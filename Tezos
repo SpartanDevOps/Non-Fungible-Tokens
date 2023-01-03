@@ -1,0 +1,57 @@
+storage   (pair (pair address nat) (pair (map nat string) (map address nat)))
+
+parameter (pair address string)
+
+code {
+    UNPAIR ;
+    # extract the address and the name of the new NFT
+    PUSH string "Not owned" ;
+    # push the initial message
+    PUSH address 0x0 ;
+    # push the initial owner
+    PUSH (pair address string) ;
+    NIL operation ;
+    # create an empty operation list
+    PAIR ;
+    # pair the initial message and owner
+    PUSH (map nat string) ;
+    # create an empty map from token ID to name
+    PUSH (map address nat) ;
+    # create an empty map from owner to token ID
+    PAIR ;
+    # pair the two maps
+    DIP { CAR } ;
+    # save the current storage
+    DIP { CDR } ;
+    # save the new token data
+    DIP { DIP { DIP { CDR } } } ;
+    # save the new address and name
+    DIP { CDR } ;
+    # save the name
+    DIP { CDR } ;
+    # save the address
+    DIP { CDR } ;
+    # save the token ID
+    DIP { CDR } ;
+    # save the token ID
+    UPDATE ;
+    # update the map from token ID to name
+    DIP { CDR } ;
+    # save the owner
+    DIP { CDR } ;
+    # save the token ID
+    UPDATE ;
+    # update the map from owner to token ID
+    NIL operation ;
+    # create an empty operation list
+    PAIR ;
+    # pair the new storage and the operation list
+    NIL (pair address string) ;
+    # create an empty address and name pair
+    PAIR ;
+    # pair the two
+}
+
+
+// This smart contract allows you to create a new NFT and store the owner and name of the NFT in storage. It also maintains two maps: one from token ID to name, and another from owner to token ID.
+// To create a new NFT, call the contract with a pair containing the address of the owner and the name of the NFT as the parameter. The contract will then create a new token ID, update the storage to include the new NFT< and return the updated storage and an empty operation list.
