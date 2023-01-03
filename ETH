@@ -1,0 +1,29 @@
+pragma solidity ^0.6.0;
+
+import "https://github.com/OpenZeppelin/openzeppelin-solidity/contracts/token/ERC721/SafeERC721.sol";
+
+contract MyNFT is SafeERC721 {
+    string public name;
+    string public symbol;
+
+    constructor(string memory _name, string memory _symbol) public {
+        name = _name;
+        symbol = _symbol;
+    }
+
+    function createNFT(string memory _metadata) public {
+        // Add code here to create a new NFT and assign it to the msg.sender
+    }
+
+    function transferNFT(uint256 _tokenId, address _to) public {
+        // Add code here to transfer an NFT with the given token ID to the specified address
+    }
+
+    function balanceOf(address _owner) public view returns (uint256) {
+        // Add code here to return the number of NFTs owned by the specified address
+    }
+
+    function tokenOfOwnerByIndex(address _owner, uint256 _index) public view returns (uint256) {
+        // Add code here to return the token ID of the NFT at the given index owned by the specified address
+    }
+}
